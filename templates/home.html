@@ -3,9 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Prediction_page</title>
 </head>
+<style>
+   body {
+    /* position: absolute; */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    background-size: cover;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background for the form */
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border:none;
+    padding: 8px 42px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
+  
+  .prediction_text {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  #prediction_text_container{
+    margin: 40px;
+  }
+
+</style>
+
+<script>
+    const predictButton = document.querySelector('button[type="submit"]');
+    const predictionTextContainer = document.getElementById('prediction_text_container');
+    
+    predictButton.addEventListener('click', () => {
+      predictionTextContainer.style.display = 'block';
+    });
+    </script>
+
 <body>
-    <h1>Hello World</h1>
+<div>
+    <h1 style="color: azure;">Season Ratings Prediction</h1>
+
+    <form action="{{url_for('predication')}}" , method="post">
+        <input type="text" name="Teams" placeholder="Teams" , required="required" /><br>
+        <input type="text" name="Seasons" placeholder="Seasons" , required="required" /><br>
+        <input type="text" name="Players" placeholder="Players" , required="required" /><br>
+        <input type="number" name="Matches" placeholder="Matches" , required="required" /><br>
+        <input type="number" name="Goals" placeholder="Goals" , required="required" /><br>
+        <input type="number" name="Assists" placeholder="Assists" , required="required" /><br>
+        <br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">predict</button>
+        <br> 
+        <div id="prediction_text_container">
+            {{prediction_text}}
+        </div>
+    </form>
+<br>
+<br>
+</div>
+
 </body>
 </html>
